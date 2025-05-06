@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc} % Obsługa kodowania UTF-8
+\usepackage[T1]{fontenc}    % Kodowanie czcionek T1
+\usepackage{polski}         % Obsługa języka polskiego
+\usepackage[polish]{babel}  % Wsparcie dla polskich reguł typograficznych
+\usepackage{graphicx}       % Wymagane do wstawiania obrazów
+\usepackage{amsmath}        % Obsługa zaawansowanych funkcji matematycznych
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{listings}       % Obsługa wstawiania kodu źródłowego
+\usepackage{xcolor}
+\usepackage{listings}
+
+\input{komendy.tex}
+\begin{document}
+\sloppy
+\begin{center}
+    \small
+        \renewcommand{\arraystretch}{1.3} % Zmniejszenie odstępów między wierszami
+        \setlength{\tabcolsep}{20pt} % Zmniejszenie odstępów między kolumnami
+        \begin{tabular}{|c|c|c|}
+            \hline %chktex 44
+            \multicolumn{3}{|c|}{\large Wydział Nauk Inżynieryjnych ANS w Nowym Sączu}   \\
+            \multicolumn{3}{|c|}{\large Metody numeryczne – laboratorium}   \\
+            \hline %chktex 44
+            \multicolumn{3}{|c|}{\large Temat: P10} \\
+            \hline %chktex 44
+            \large Nazwisko i imię: & \large Ocena sprawozdania & \large Zaliczenie:\\
+            \cline{2-3}
+            \large Dominik Żuchowicz & & \\
+            \hline
+            \large Data wykonania ćwiczenia:&\multicolumn{2}{l|}{\large Grupa:}\\
+            \large  06.05.2025 &\multicolumn{2}{l|}{\large P3}\\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \section*{Wprowadzenie}
+    Celem niniejszego laboratorium było zapoznanie się z wybranymi dyrektywami oraz mechanizmami programowania równoległego w środowisku OpenMP. W trakcie ćwiczeń przeanalizowano działanie dyrektyw takich jak \texttt{if}, \texttt{num\_threads}, \texttt{barrier}, \texttt{section} oraz \texttt{nowait}, które umożliwiają efektywne zarządzanie współbieżnością oraz synchronizacją wątków. Poznane mechanizmy pozwalają na optymalizację wykonywania obliczeń poprzez dynamiczne dostosowywanie liczby wątków, synchronizację punktów wykonania oraz podział zadań pomiędzy wątki. W ramach zadań praktycznych przeprowadzono testy wydajnościowe oraz analizę wpływu poszczególnych dyrektyw na czas wykonania programów, co pozwoliło na lepsze zrozumienie zasad działania programów równoległych oraz potencjalnych korzyści płynących z ich stosowania.
+
+    \section{Zadania}
+    \subsection{\texttt{PWIR\_10\_01.cpp}}
+    \subsubsection{Zadanie 1}
+    Dopisz dyrektywę \texttt{num\_threads} do programu z \texttt{PWIR\_08\_00.cpp}. Przetestuj czas wykonywania programu dla dwóch i więcej wątków. 
+    \ListingFile{Zadanie 1}{PWIR_05_00}
+    \fg{zdjecia/Zrzut ekranu 2025-05-06 102647.png}{Zrzut ekranu 2025-05-06 102647}{zdjecia-Zrzut-ekranu-2025-05-06-102647}
+    \clearpage
+    \subsection{\texttt{PWIR\_10\_03.cpp}}
+    \subsubsection{Zadanie 1}
+    Przetestuj działanie  PWIR\_08\_00 z klauzulą nowait oraz bez. Sprawdź również działanie na 
+większej ilości wątków.
+    \ListingFile{Zadanie1}{PWIR_05_01}
+    
+    \fg{zdjecia/Zrzut ekranu 2025-05-06 103617.png}{Zrzut ekranu 2025-05-06 103617}{zdjecia-Zrzut-ekranu-2025-05-06-103617}
+    \clearpage
+    \subsubsection{Zadanie 2}
+    Napisz program liczący długość wektora na czterech wątkach, używając sekcji.
+    \ListingFile{z4}{z4}
+    \fg{zdjecia/Zrzut ekranu 2025-05-06 103711.png}{Zrzut ekranu 2025-05-06 103711}{zdjecia-Zrzut-ekranu-2025-05-06-103711}
+    \clearpage
+    
+
+
+
+    \section{Wnioski}
+    Podczas realizacji ćwiczenia zapoznałem się z zaawansowanymi dyrektywami OpenMP, takimi jak \texttt{if}, \texttt{num\_threads}, \texttt{barrier}, \texttt{section} oraz \texttt{nowait}. Zastosowanie dyrektywy \texttt{if} pozwala na dynamiczne decydowanie o równoległym wykonaniu kodu w zależności od rozmiaru danych, co może poprawić efektywność programu. Dyrektywa \texttt{num\_threads} umożliwia kontrolę liczby wątków, co pozwala na optymalizację wykorzystania zasobów sprzętowych. Dyrektywa \texttt{barrier} zapewnia synchronizację wątków, co jest istotne przy współdzieleniu danych. Konstrukcja \texttt{sections} umożliwia podział pracy na niezależne zadania, które mogą być wykonywane równolegle przez różne wątki. Klauzula \texttt{nowait} pozwala na dalsze wykonywanie kodu bez oczekiwania na pozostałe wątki, co może skrócić czas wykonania programu, ale wymaga ostrożności przy dostępie do współdzielonych danych. Przeprowadzone testy wykazały, że odpowiednie wykorzystanie tych dyrektyw pozwala na zwiększenie wydajności programów równoległych, jednak wymaga świadomego zarządzania synchronizacją i podziałem pracy.
+\end{document}
